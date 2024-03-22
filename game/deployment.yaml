@@ -1,26 +1,36 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: game-2048
-  name: deployment-2048
+  labels:
+    app: simple-deployment
+    app.kubernetes.io/component: simple-deployment
+    app.kubernetes.io/instance: simple-deployment
+    app.kubernetes.io/part-of: simple-deployment
+    app.openshift.io/runtime: redhat
+  name: simple-deployment
 spec:
+  replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/name: app-2048
-  replicas: 1
+      app: simple-deployment
+    type: Recreate
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: app-2048
+        app: simple-deployment
+        deploymentconfig: simple-deployment
     spec:
       containers:
-      - image: public.ecr.aws/l6m2t8p7/docker-2048:latest
+      - image: registry.access.redhat.com/ubi8/ubi:latest
         imagePullPolicy: Always
-        name: app-2048
-        ports:
-        - containerPort: 80
-      - resources:
+        name: simple-deployment
+        command:
+        - /bin/sh
+        - -c
+        - |
+          sleep infinity
+        resources:
           limits:
-            memory: 16Gi
+            memory: 1Gi
           requests:
-            memory: 384Mi
+            memory: 512Mi
