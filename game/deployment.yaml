@@ -22,18 +22,18 @@ spec:
         deploymentconfig: simple-deployment
     spec:
       containers:
-      - image: registry.access.redhat.com/ubi8/ubi:latest
-        imagePullPolicy: Always
-        name: simple-deployment
-        command:
+      - command:
         - /bin/sh
         - -c
         - |
           sleep infinity
+        image: registry.access.redhat.com/ubi8/ubi:latest
+        imagePullPolicy: Always
+        name: simple-deployment
         resources:
           limits:
+            cpu: 1500m
             memory: 1Gi
-            cpu: 1
           requests:
-            memory: 700Mi
             cpu: 500m
+            memory: 700Mi
