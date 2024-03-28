@@ -10,7 +10,7 @@ metadata:
   name: simple-deployment
   namespace: game
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: simple-deployment
