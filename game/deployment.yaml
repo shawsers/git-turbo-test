@@ -31,7 +31,7 @@ spec:
         name: simple-deployment
         resources:
           limits:
-            cpu: "1"
+            cpu: "2"
             memory: 756Mi
           requests:
             cpu: 100m
